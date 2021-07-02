@@ -14,28 +14,32 @@ type Excel struct {
 }
 
 //NewExcel ..
-func NewExcel() *Excel {
+func NewExcel() (*Excel,error) {
 	ole.CoInitialize(0)
 
 	unknown, err := oleutil.CreateObject("Excel.Application")
 	if err != nil {
 		log.Fatalln("in func NewExcel:", err)
+		return nil,err
 	}
 	obj, err := unknown.QueryInterface(ole.IID_IDispatch)
 	if err != nil {
 		log.Fatalln("in func NewExcel:", err)
+		return nil,err
 	}
 	e := new(Excel)
 	e.obj = obj
 
 	if _, err := oleutil.PutProperty(obj, "Visible", false); err != nil {
 		log.Println("in func NewExcel:", err)
+		return nil,err
 	}
 	if _, err := oleutil.PutProperty(obj, "DisplayAlerts", false); err != nil {
 		log.Println("in func NewExcel:", err)
+		return nil,err
 	}
 
-	return e
+	return e,nil
 }
 
 func (e *Excel) workbooks() *ole.IDispatch {
