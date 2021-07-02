@@ -34,7 +34,7 @@ func NewExcel() (*Excel,error) {
 	}
 	e := new(Excel)
 	e.obj = obj
-
+	defer e.Close()
 	if _, err := oleutil.PutProperty(obj, "Visible", false); err != nil {
 		log.Println("in func NewExcel:", err)
 		return nil,err
