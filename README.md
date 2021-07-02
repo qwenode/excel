@@ -23,6 +23,7 @@ import (
 )
 
 func main() {
+	excel.CoInit() //必须先执行
 	Excel := excel.NewExcel()
 	Const := excel.NewConst()
 	Excel.Visible(true)
@@ -37,6 +38,7 @@ func main() {
 	workbook.SaveAs("excel.xlsx", Const.FILEFORMATxlWorkbookDefault)
 
 	Excel.Close()
+	excel.CoUnInit() //必须执行
 }
 
 ```
