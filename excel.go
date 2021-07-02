@@ -13,9 +13,14 @@ type Excel struct {
 	obj *ole.IDispatch
 }
 
+func CoInit() {
+	ole.CoInitialize(0)
+}
+func CoUnInit() {
+	ole.CoUninitialize()
+}
 //NewExcel ..
 func NewExcel() (*Excel,error) {
-	ole.CoInitialize(0)
 
 	unknown, err := oleutil.CreateObject("Excel.Application")
 	if err != nil {
@@ -92,7 +97,6 @@ func (e *Excel) Close() {
 
 	e.obj.CallMethod("Quit")
 	e.obj.Release()
-	ole.CoUninitialize()
 }
 
 //Visible ..
