@@ -14,7 +14,10 @@ type Excel struct {
 }
 
 func CoInit() {
-	ole.CoInitialize(0)
+	err := ole.CoInitializeEx(0,0)
+	if err!= nil {
+		log.Println("ole初始化失败:",err)
+	}
 }
 func CoUnInit() {
 	ole.CoUninitialize()
