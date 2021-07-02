@@ -27,23 +27,24 @@ func NewExcel() (*Excel,error) {
 
 	unknown, err := oleutil.CreateObject("Excel.Application")
 	if err != nil {
-		log.Fatalln("in func NewExcel:", err)
+		log.Fatalln("in func NewExcel1:", err)
 		return nil,err
 	}
 	obj, err := unknown.QueryInterface(ole.IID_IDispatch)
 	if err != nil {
-		log.Fatalln("in func NewExcel:", err)
+		log.Fatalln("in func NewExcel2:", err)
 		return nil,err
 	}
 	e := new(Excel)
 	e.obj = obj
-	defer e.Close()
 	if _, err := oleutil.PutProperty(obj, "Visible", false); err != nil {
-		log.Println("in func NewExcel:", err)
+		log.Println("in func NewExcel3:", err)
+		e.Close()
 		return nil,err
 	}
 	if _, err := oleutil.PutProperty(obj, "DisplayAlerts", false); err != nil {
-		log.Println("in func NewExcel:", err)
+		log.Println("in func NewExcel4:", err)
+		e.Close()
 		return nil,err
 	}
 
