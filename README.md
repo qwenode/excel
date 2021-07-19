@@ -1,5 +1,6 @@
 # excel 基于go-ole
 
+https://docs.microsoft.com/en-us/office/vba/api/excel.xlfileformat
 
 可以操作xls文件,必须先安装Microsoft office excel,2010以前的版本最多只能操作65535行。
 
