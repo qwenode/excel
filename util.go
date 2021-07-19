@@ -64,7 +64,7 @@ type Const struct {
 	FILEFORMATxlXMLSpreadsheet              int
 }
 
-//NewConst ..
+//NewConst .. @see https://docs.microsoft.com/en-us/office/vba/api/excel.xlfileformat
 func NewConst() *Const {
 	c := new(Const)
 
